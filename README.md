@@ -1,132 +1,106 @@
-# FSJS Week 2 - Our Superlative Web Page
+# FSJS Initial Setup
 
 **Outline**
 
-* Set up the project for the front end
-* Serve a static page
-* Add a template engine
+* Install/Setup git
+* Install/Setup nodejs/npm || nvm
+* Install/Setup mongodb || docker || mLab
 
-## Set up the project
+**Legend**
+* Difficulty of each method is indicated with :one: :two: :three: :four: :five:
+* Recommended method is indicated with :white_check_mark: 
+
+# Install/Setup git 
+## macOS X :one:
+1. Download https://git-scm.com/download/mac
+2. Install the .dmg
+
+## windows :one:
+1. Download https://git-scm.com/download/win
+2. Run the setup wizard .exe
+_I recommend picking add commands to windows command line so that cmd and git bash have the same functions_
+
+# Install/Setup nodejs/npm || nvm
+## nodejs/npm Install :white_check_mark:
+### macOS X :one:
+1. Download https://nodejs.org/dist/v8.11.1/node-v8.11.1.pkg
+2. Run the setup wizard .pkg file
+
+### windows :one:
+1. Download https://nodejs.org/dist/v8.11.1/node-v8.11.1-x64.msi or https://nodejs.org/dist/v8.11.1/node-v8.11.1-x86.msi
+2. Run the setup wizard .exe file
+
+## nvm
+This tool will let you pick different versions of node which is helpful if you are doing a lot of node apps
+### macOSX :three:
+1. Open terminal
+2. Run the following command `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
+3. Verify by opening terminal and running `command -v nvm`
+
+### windows :three:
+1. Download the latest installer https://github.com/coreybutler/nvm/releases
+2. Run the setup wizard
+3. Verify by running `nvm use 4.4.0` in git bash or command line
+
+
+# Install/Setup mongodb || docker || mLab
+## mongodb Community Edition :three:
+### general
+https://docs.mongodb.com/manual/installation/
+
+### macOS X
+Follow the directions on the follow site
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
+### windows
+Follow the directions on the follow site
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+
+### both
+These will be your settings for connecting to the db, example:
 ```
-git checkout week2
-npm install
-```
-_This should be similar to how we left it from [week 1](/CodeLouisville/FSJS-class-project/tree/week1)_
-
-
-## Serve a static page
-1. Create a "public" directory inside the root directory
-```
-mkdir public
-```
-
-2. Set up our express application to serve static files.
-Add a reference to Node's `path` module to the top of the page in the `server.js`
-```javascript
-const path = require('path');
-```
-[[Documentation for path](https://nodejs.org/api/path.html)]
-
-Then add the following line to `server.js` BEFORE any routes
-```javascript
-const publicPath = path.resolve(__dirname, '../public');
-app.use(express.static(publicPath));
-```
-[[Documentation for Node Modules (dirname)](https://nodejs.org/api/modules.html)]
-[[Guide for ExpresJS static](https://expressjs.com/en/starter/static-files.html)]
-
-`express.static()` will search the `public` directory for a file that matches the requested path. For example: `index.html`, `img/puppy.jpg`, etc.  If there is a match, that file is streamed back to the requester, otherwise, express moves on to the next route.
-
-3. Add an `index.html` to the public folder.
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Our Glorious Node Project</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>A wild webpage appears...</h1>
-    </div>
-
-  </body>
-</html>
-```
-
-4. Start the server and check that you can access a static `html` page
-
-Note: We previously had a "Hello World" endpoint that was served when user's requested the path `/`.  That path is now unreachable, because all requests for `/` will receive `index.html`.
-
-`/doc` still works, though.
-
-
-## Add a template engine
-1. We'll be using jQuery and Handlebars, so let's add them to our `index.html` at the end of the `<body>` tag
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.8/handlebars.min.js"></script>
-```
-[[Documentation for jQuery](https://api.jquery.com/)]
-[[Documentation for Handlebars](http://handlebarsjs.com/reference.html)]
-
-2. Drop a quick template in `index.html` to see how handlebars renders content:
-```html
-<script>
-  $(document).ready(function() {
-    const data = { name: "Code Louisvillains" }
-    const greetingTemplate = 'Hello {{name}}! I am a template!';
-    const greetingCompiled = Handlebars.compile(greetingTemplate);
-    const greetingRendered = greetingCompiled(data);
-
-    $('body h1').first().after(greetingRendered);
-  });
-</script>
+MONGODB_URI=mongodb://localhost:<random port>/SampleDB
 ```
 
-3. Render a list of fake data.  Start by adding a place in the html to render the list after the `<h1>`:
-```html
-<div id="list-container"></div>
+## docker :three:
+Make sure to install Kitematic
+### general
+https://docs.docker.com/install/
+
+### macOS X
+https://docs.docker.com/docker-for-mac/install/
+
+### windows
+https://docs.docker.com/docker-for-windows/install/
+
+### both
+1. Once you have the install complete you will open Kitematic and search for `mongo`
+2. Click Create on the docker container with Official and mongo  
+
+![docker container image](https://lh3.googleusercontent.com/jDcFAjda3cufbKF-dl2fjVHkdbgG1tnqPctcho8pmyYs-0_GvTAT61QT8BrbOGb8xJZAHULCByg0mbmyrsmQVlvkXKst8QWiqgjRHdFYzSzhbGpacH7tikWlXOA92zXj3Sx0Z42yvvQEtL9tIHN7bj7njhtkLo6TjH8aR3qqAGd7_mdPdVSXfHk3phshyaWwsEJ5m9HPj8eFB49bFqgAOoF09ZORAyxED8EM-hAKNH5cnz1VHfO7iP7nrqSFWBjDIUzka3tUA8z7GzrJxraFS8sAgthkBjTbCpG_CkeVxIZMsN6MMFpH4oqs1ca63bXgcD2dVpjjbJzwaFm-HNnJ99IB4DwbbI_smYUg-Lhtp_N8AIUkTtN6HTWMjLt_LvZKvMyLXrZPv-JKoHq2jKavm1P4gNk69DjCtTLjTyz7b9Lg4UifLJFqBSZFff3OTsqCozCX70bIIv80Fadpl5sgTJYmNMU_axhIplTSI_6gqCCWbZiFyeQj21798atoHwEVPkMudhWOdwL_f9IArIUPdSM2eelC2Dn_hSKcXQnU-uXJtAhLb58B-AW49EHGsM67p3lPFU5Na0P8XS36qrrwVLGb3mq_9UalnTXnyfDN=w268-h140-no "docker container")
+
+3. Now start the container
+4. Go to settings -> Hostname/Ports
+5. These will be your settings for connecting to the db, example:
+```
+MONGODB_URI=mongodb://localhost:<random port>/SampleDB
+```
+ 
+## mLab :one: :white_check_mark:
+### both
+1. Head over to [mLab](https://mlab.com/signup/) and signup/login
+2. Create a new MongoDB deployment
+3. Pick Amazon Web Services and Free(Sandbox)
+4. Give your db a name, example `fsjs-db1`
+5. Click the new deployment (give it a second)
+6. Create a new collection or do it via code
+7. At the top you will see the connection settings, example:
+```
+To connect using a driver via the standard MongoDB URI (what's this?):
+
+mongodb://<dbuser>:<dbpassword>@ds1111111.mlab.com:17360/fsjs-db1
 ```
 
-4. Create some fake data in another script tag
-```html
-<script>
-  $(document).ready(function() {
-    const data = {
-      list: [
-        {name: 'Buffy', value: 'Slayer, guidance counselor'},
-        {name: 'Willow', value: 'Witch'},
-        {name: 'Xander', value: 'Dude, construction worker'},
-        {name: 'Giles', value: 'Watcher, Librarian'},
-      ],
-    };
-  });
-</script>
-```
+This will go into your node project!
 
-5. Create a template for each list item.
-```html
-<script id="list-template" type="text/x-handlebars-template">
-  {{#each list}}
-  <div class="row">
-    <div class="col-xs-6"><strong>{{name}}</strong></div>
-    <div class="col-xs-6">{{value}}</div>
-  </div>
-  {{/each}}
-</script>
-```
-
-6. Right below the `list` array, compile the template and render it into the container.
-```javascript
-const template = $('#list-template').html();
-const compiled = Handlebars.compile(template);
-$('#list-container').html(compiled(data));
-```
-
-7. Refresh the page
-
-8. Add some style in the `<head>`
-```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-```
+_See it was as Easy as ABC123_
