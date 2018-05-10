@@ -3,31 +3,31 @@
 **Outline**
 
 * Install/Setup git
-* Install/Setup nodejs/npm || nvm
-* Install/Setup mongodb || docker || mLab
+* Install/Setup nodejs/npm
+* Install/Setup mLab
 
 # Install/Setup git 
-## macOS X :one:
+## macOS X
 1. Download https://git-scm.com/download/mac
 2. Install the .dmg
 
-## windows :one:
+## windows
 1. Download https://git-scm.com/download/win
 2. Run the setup wizard .exe
 _I recommend picking add commands to windows command line so that cmd and git bash have the same functions_
 
-# Install/Setup nodejs/npm || nvm
+# Install/Setup nodejs/npm
 ## nodejs/npm Install
-### macOS X :one:
+### macOS X
 1. Download https://nodejs.org/dist/v8.11.1/node-v8.11.1.pkg
 2. Run the setup wizard .pkg file
 
-### windows :one:
+### windows
 1. Download https://nodejs.org/dist/v8.11.1/node-v8.11.1-x64.msi or https://nodejs.org/dist/v8.11.1/node-v8.11.1-x86.msi
 2. Run the setup wizard .exe file
 
-# Install/Setup mongodb || docker || mLab
-## mLab :one: :white_check_mark:
+# Install/Setup mLab
+## mLab
 ### both
 1. Head over to [mLab](https://mlab.com/signup/) and signup/login
 2. Create a new MongoDB deployment
