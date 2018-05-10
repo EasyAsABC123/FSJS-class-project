@@ -3,8 +3,8 @@
 **Outline**
 
 * Install/Setup git
-* Install/Setup nodejs/npm || nvm
-* Install/Setup mongodb || docker || mLab
+* Install/Setup nodejs/npm
+* Install/Setup mLab
 
 # Install/Setup git 
 ## macOS X :one:
